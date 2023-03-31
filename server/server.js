@@ -129,6 +129,7 @@ app.get("/api/weather", (req, res) => {
   //any environment var that node has access to, will be accessible via process.env
   //exist by default in terminal
   let key = process.env.API_KEY;
+  //extracting city from your query
   let city = req.query.city;
   console.log(city);
   let URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
@@ -141,16 +142,9 @@ app.get("/api/weather", (req, res) => {
     //json converts string to actual object
     //.json returns another promise
     .then((response) => response.json())
+    //result is an obj
+    //result.name = str
     .then((result) => {
-      console.log(result);
-      result.name;
-      result.weather[0].icon;
-      result.main.temp;
-      result.main.feels_like;
-      result.main.temp_min;
-      result.main.temp_max;
-      result.main.humidity;
-      result.wind.speed;
       //it is returning that result obj as a json response
       //that can then be used by the front end
       //result defining new obj from api
