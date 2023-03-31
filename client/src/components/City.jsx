@@ -38,6 +38,16 @@ const City = ({ city, toUpdate, toDelete }) => {
           {" "}
           <ioicons.IoSync />
         </Button>
+        <Button
+          variant="outline-info"
+          onClick={() => {
+            onUpdate(city);
+          }}
+          style={{ padding: "0.6em" }}
+        >
+          {" "}
+          City Weather Info
+        </Button>
       </Card.Body>
     </Card>
   );
