@@ -13,12 +13,13 @@ const MyForm = ({ onSaveCity, editingCity, onUpdateCity }) => {
   //create functions that handle the event of the user typing into the form
   const handleUserNameChange = (event) => {
     const username = event.target.value;
-    setCity((city) => ({ ...city, username }));
+    setCity((prevState) => ({ ...prevState, username }));
   };
 
   const handleFavoriteCityChange = (event) => {
-    const favoritecity = event.target.value;
-    setCity((city) => ({ ...city, favoritecity }));
+    const city = event.target.value;
+    console.log(city);
+    setCity((prevCity) => ({ ...prevCity, city }));
   };
 
   const clearForm = () => {
@@ -27,7 +28,8 @@ const MyForm = ({ onSaveCity, editingCity, onUpdateCity }) => {
 
   //A function to handle the post request
   const postCity = (newCity) => {
-    return fetch("http://localhost:8085/api/favoritecity", {
+    console.log(newCity);
+    fetch("http://localhost:8085/api/favoritecity", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCity),
@@ -67,8 +69,9 @@ const MyForm = ({ onSaveCity, editingCity, onUpdateCity }) => {
     if (city.id) {
       putCity(city);
     } else {
+      console.log("city should be here");
+      console.log(city);
       postCity(city);
-      console.log({ postCity });
     }
   };
 
@@ -92,7 +95,7 @@ const MyForm = ({ onSaveCity, editingCity, onUpdateCity }) => {
           id="add-user-city"
           placeholder="favorite city"
           required
-          value={city.favoritecity}
+          value={city.city}
           onChange={handleFavoriteCityChange}
         />
       </Form.Group>

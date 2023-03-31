@@ -27,6 +27,7 @@ app.get("/api/favoritecity", async (req, res) => {
 
 // create the POST request
 app.post("/api/favoritecity", async (req, res) => {
+  console.log(req.body.city);
   try {
     const newCity = {
       username: req.body.username,

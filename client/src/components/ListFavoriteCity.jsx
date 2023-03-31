@@ -21,7 +21,7 @@ const ListFavoriteCity = () => {
 
   useEffect(() => {
     loadCities();
-  }, [cities]);
+  }, []);
 
   const onSaveCity = (newCity) => {
     //console.log(newWeather, "From the parent - List of Students");

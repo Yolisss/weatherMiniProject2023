@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import * as ioicons from "react-icons/io5";
 
 const City = ({ city, toUpdate, toDelete }) => {
+  console.log(city);
   const onUpdate = (toUpdateCity) => {
     toUpdate(toUpdateCity);
   };
@@ -16,7 +17,7 @@ const City = ({ city, toUpdate, toDelete }) => {
     <Card>
       <Card.Body>
         <Card.Title>
-          {city.username} {city.favoritecity} console.log(city);
+          {city.username} {city.city}
         </Card.Title>
         <Button
           variant="outline-danger"
