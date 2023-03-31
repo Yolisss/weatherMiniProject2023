@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import * as ioicons from "react-icons/io5";
 
-const Weather = ({ weather, toUpdate, toDelete }) => {
+const City = ({ weather, toUpdate, toDelete }) => {
   const onUpdate = (toUpdateWeather) => {
     toUpdate(toUpdateWeather);
   };
@@ -42,4 +42,4 @@ const Weather = ({ weather, toUpdate, toDelete }) => {
   );
 };
 
-export default Weather;
+export default City;

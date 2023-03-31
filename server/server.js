@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const path = require("path");
 const db = require("./db/db-connection.js");
+const fetch = require("node-fetch");
 
 const app = express();
 const PORT = process.env.PORT || 8085;
