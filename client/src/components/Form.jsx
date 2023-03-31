@@ -27,7 +27,7 @@ const MyForm = ({ onSaveWeather, editingWeather, onUpdateWeather }) => {
 
   //A function to handle the post request
   const postWeather = (newWeather) => {
-    return fetch("http://localhost:8085/api/weather", {
+    return fetch("http://localhost:8085/api/favoritecity", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newWeather),
@@ -46,7 +46,7 @@ const MyForm = ({ onSaveWeather, editingWeather, onUpdateWeather }) => {
 
   //A function to handle the post request
   const putWeather = (toEditWeather) => {
-    return fetch(`http://localhost:8085/api/weather/${toEditWeather.id}`, {
+    return fetch(`http://localhost:8085/api/favoritecity/${toEditWeather.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(toEditWeather),

@@ -12,7 +12,7 @@ const ListWeather = () => {
 
   const loadWeather = () => {
     // A function to fetch the list of weather that will be load anytime that list change
-    fetch("http://localhost:8085/api/weather")
+    fetch("http://localhost:8085/api/favoritecity")
       .then((response) => response.json())
       .then((weather) => {
         setWeather(weather);
@@ -38,7 +38,7 @@ const ListWeather = () => {
   //A function to handle the Delete funtionality
   const onDelete = (weather) => {
     //console.log(weather, "delete method")
-    return fetch(`http://localhost:8085/api/weather/${weather.id}`, {
+    return fetch(`http://localhost:8085/api/favoritecity/${weather.id}`, {
       method: "DELETE",
     }).then((response) => {
       //console.log(response);
