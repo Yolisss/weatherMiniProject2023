@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
 // create the get request for weather in the endpoint '/api/weather'
 app.get("/api/favoritecity", async (req, res) => {
   try {
-    const { rows: weather } = await db.query("SELECT * FROM weather");
-    res.send(weather);
+    const { rows: favoritecity } = await db.query("SELECT * FROM favoritecity");
+    res.send(favoritecity);
   } catch (e) {
     return res.status(400).json({ e });
   }
@@ -28,14 +28,14 @@ app.get("/api/favoritecity", async (req, res) => {
 // create the POST request
 app.post("/api/favoritecity", async (req, res) => {
   try {
-    const newWeather = {
+    const newCity = {
       username: req.body.username,
-      favoritecity: req.body.favoritecity,
+      city: req.body.city,
     };
-    //console.log([newWeather.username, newWeather.favoritecity, newWeather.iscurrent]);
+    //console.log([newCity.username, newCity.favoritecity, newCity.iscurrent]);
     const result = await db.query(
-      "INSERT INTO weather(username, favoritecity) VALUES($1, $2) RETURNING *",
-      [newWeather.username, newWeather.favoritecity]
+      "INSERT INTO favoritecity(username, city) VALUES($1, $2) RETURNING *",
+      [newCity.username, newCity.city]
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
@@ -46,11 +46,11 @@ app.post("/api/favoritecity", async (req, res) => {
 });
 
 // delete request for weather
-app.delete("/api/favoritecity/:weatherId", async (req, res) => {
+app.delete("/api/favoritecity/:cityId", async (req, res) => {
   try {
-    const weatherId = req.params.weatherId;
-    await db.query("DELETE FROM weather WHERE id=$1", [weatherId]);
-    console.log("From the delete request-url", weatherId);
+    const cityId = req.params.cityId;
+    await db.query("DELETE FROM favoritecity WHERE id=$1", [cityId]);
+    console.log("From the delete request-url", cityId);
     res.status(200).end();
   } catch (e) {
     console.log(e);
@@ -59,24 +59,23 @@ app.delete("/api/favoritecity/:weatherId", async (req, res) => {
 });
 
 //A put request - Update a student
-app.put("/api/favoritecity/:weatherId", async (req, res) => {
+app.put("/api/favoritecity/:cityId", async (req, res) => {
   //console.log(req.params);
   //This will be the id that I want to find in the DB - the student to be updated
-  const weatherId = req.params.weatherId;
-  const updatedWeather = {
+  const cityId = req.params.cityId;
+  const updatedCity = {
     id: req.body.id,
     username: req.body.username,
-    favoritecity: req.body.favoritecity,
-    iscurrent: req.body.is_current,
+    city: req.body.city,
   };
-  console.log("In the server from the url - the student id", weatherId);
+  console.log("In the server from the url - the student id", cityId);
   console.log(
     "In the server, from the react - the student to be edited",
-    updatedWeather
+    updatedCity
   );
   // UPDATE weather SET favoritecity = "something" WHERE id="16";
-  const query = `UPDATE weather SET username=$1, favoritecity=$2 WHERE id=${weatherId} RETURNING *`;
-  const values = [updatedWeather.username, updatedWeather.favoritecity];
+  const query = `UPDATE favoritecity SET username=$1, city=$2 WHERE id=${cityId} RETURNING *`;
+  const values = [updatedCity.username, updatedCity.city];
   try {
     const updated = await db.query(query, values);
     console.log(updated.rows[0]);
