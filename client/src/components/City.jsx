@@ -16,7 +16,7 @@ const City = ({ city, toUpdate, toDelete }) => {
     <Card>
       <Card.Body>
         <Card.Title>
-          {city.username} {city.city}{" "}
+          {city.username} {city.favoritecity} console.log(city);
         </Card.Title>
         <Button
           variant="outline-danger"

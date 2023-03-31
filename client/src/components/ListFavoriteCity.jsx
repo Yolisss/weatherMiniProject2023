@@ -23,7 +23,7 @@ const ListFavoriteCity = () => {
     loadCities();
   }, [cities]);
 
-  const onSaveWeather = (newCity) => {
+  const onSaveCity = (newCity) => {
     //console.log(newWeather, "From the parent - List of Students");
     setCities((cities) => [...cities, newCity]);
   };
@@ -71,7 +71,7 @@ const ListFavoriteCity = () => {
       </div>
       <MyForm
         key={editingCity ? editingCity.id : null}
-        onSaveWeather={onSaveWeather}
+        onSaveCity={onSaveCity}
         editingWeather={editingCity}
         onUpdateStudent={updateCity}
       />
