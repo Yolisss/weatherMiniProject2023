@@ -1,57 +1,57 @@
 import React, { useState, useEffect } from "react";
 import * as ioicons from "react-icons/io5";
 import MyForm from "./Form";
-import Weather from "./Weather";
+import City from "./City";
 
-const ListWeather = () => {
+const ListFavoriteCity = () => {
   // this is my original state with an array of weather
-  const [weather, setWeather] = useState([]);
+  const [cities, setCities] = useState([]);
 
   //this is the state needed for the UpdateRequest
-  const [editingWeather, setEditingWeather] = useState(null);
+  const [editingCity, setEditingCity] = useState(null);
 
-  const loadWeather = () => {
+  const loadCities = () => {
     // A function to fetch the list of weather that will be load anytime that list change
-    fetch("http://localhost:8085/api/weather")
+    fetch("http://localhost:8085/api/favoritecity")
       .then((response) => response.json())
-      .then((weather) => {
-        setWeather(weather);
+      .then((cities) => {
+        setCities(cities);
       });
   };
 
   useEffect(() => {
-    loadWeather();
-  }, [weather]);
+    loadCities();
+  }, []);
 
-  const onSaveWeather = (newWeather) => {
+  const onSaveCity = (newCity) => {
     //console.log(newWeather, "From the parent - List of Students");
-    setWeather((weather) => [...weather, newWeather]);
+    setCities((cities) => [...cities, newCity]);
   };
 
   //A function to control the update in the parent (weather component)
-  const updateWeather = (savedWeather) => {
+  const updateCity = (savedCity) => {
     // console.log("Line 29 savedWeather", savedWeather);
     // This function should update the whole list of weather -
-    loadWeather();
+    loadCities();
   };
 
   //A function to handle the Delete funtionality
-  const onDelete = (weather) => {
+  const onDelete = (cities) => {
     //console.log(weather, "delete method")
-    return fetch(`http://localhost:8085/api/weather/${weather.id}`, {
+    return fetch(`http://localhost:8085/api/favoritecity/${cities.id}`, {
       method: "DELETE",
     }).then((response) => {
       //console.log(response);
       if (response.ok) {
-        loadWeather();
+        loadCities();
       }
     });
   };
 
   //A function to handle the Update functionality
-  const onUpdate = (toUpdateWeather) => {
+  const onUpdate = (toUpdateCity) => {
     //console.log(toUpdateWeather);
-    setEditingWeather(toUpdateWeather);
+    setEditingCity(toUpdateCity);
   };
 
   return (
@@ -59,28 +59,24 @@ const ListWeather = () => {
       <div className="list-weather">
         <h2>Weather App</h2>
         <ul>
-          {weather.map((weather) => {
+          {cities.map((city) => {
             return (
-              <li key={weather.id}>
+              <li key={city.id}>
                 {" "}
-                <Weather
-                  weather={weather}
-                  toDelete={onDelete}
-                  toUpdate={onUpdate}
-                />
+                <City city={city} toDelete={onDelete} toUpdate={onUpdate} />
               </li>
             );
           })}
         </ul>
       </div>
       <MyForm
-        key={editingWeather ? editingWeather.id : null}
-        onSaveWeather={onSaveWeather}
-        editingWeather={editingWeather}
-        onUpdateStudent={updateWeather}
+        key={editingCity ? editingCity.id : null}
+        onSaveCity={onSaveCity}
+        editingWeather={editingCity}
+        onUpdateStudent={updateCity}
       />
     </div>
   );
 };
 
-export default ListWeather;
+export default ListFavoriteCity;
