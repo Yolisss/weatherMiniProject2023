@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as ioicons from "react-icons/io5";
 import MyForm from "./Form";
-import City from "./Weather";
+import City from "./City";
 
 const ListFavoriteCity = () => {
   // this is my original state with an array of weather
@@ -63,7 +63,7 @@ const ListFavoriteCity = () => {
             return (
               <li key={city.id}>
                 {" "}
-                <City weather={city} toDelete={onDelete} toUpdate={onUpdate} />
+                <City city={city} toDelete={onDelete} toUpdate={onUpdate} />
               </li>
             );
           })}
