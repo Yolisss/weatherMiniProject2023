@@ -2,6 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import * as ioicons from "react-icons/io5";
+import ShowCity from "./ShowCity";
 
 const City = ({ city, toUpdate, toDelete }) => {
   console.log(city);
@@ -38,16 +39,7 @@ const City = ({ city, toUpdate, toDelete }) => {
           {" "}
           <ioicons.IoSync />
         </Button>
-        <Button
-          variant="outline-info"
-          onClick={() => {
-            onUpdate(city);
-          }}
-          style={{ padding: "0.6em" }}
-        >
-          {" "}
-          City Weather Info
-        </Button>
+        <ShowCity />
       </Card.Body>
     </Card>
   );

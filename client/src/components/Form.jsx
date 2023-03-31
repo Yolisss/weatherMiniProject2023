@@ -108,7 +108,7 @@ const MyForm = ({ onSaveCity, editingCity, onUpdateCity }) => {
       /> */}
       <Form.Group>
         <Button type="submit" variant="outline-success">
-          {city.id ? "Edit city" : "Add city"}
+          {city.id ? "Edit city" : "Add user"}
         </Button>
         {city.id ? (
           <Button type="button" variant="outline-warning" onClick={clearForm}>

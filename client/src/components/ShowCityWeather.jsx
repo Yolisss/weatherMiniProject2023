@@ -32,4 +32,4 @@ function ShowCity() {
   );
 }
 
-render(<ShowCity />);
+export default ShowCity;
